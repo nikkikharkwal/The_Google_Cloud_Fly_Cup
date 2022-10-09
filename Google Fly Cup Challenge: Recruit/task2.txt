@@ -1,0 +1,1 @@
+SELECT name FROM `drl.events` WHERE city = 'Phoenix'
