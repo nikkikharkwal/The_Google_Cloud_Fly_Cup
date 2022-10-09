@@ -1,0 +1,26 @@
+CREATE TABLE drl.time_trial_cleaned AS (
+
+SELECT
+
+`drl.time_trial_group_pilot_times`.id AS time_trial_group_pilot_times_id,
+
+`drl.time_trial_group_pilots`.id AS time_trial_group_pilot_id,
+
+`drl.time_trial_groups`.id AS time_trial_group_id,
+
+round_id,
+
+CASE
+
+WHEN `drl.time_trial_group_pilot_times`.time_adjusted IS NOT null then `drl.time_trial_group_pilot_times`.time_adjusted
+
+WHEN `drl.time_trial_groups`.racestack_scoring = 0 then `drl.time_trial_group_pilot_times`.time
+ELSE`drl.time_trial_group_pilot_times`.racestack_time
+
+END
+
+AS time
+
+FROM `drl.time_trial_group_pilot_times` LEFT OUTER JOIN `drl.time_trial_group_pilots` ON `drl.time_trial_group_pilot_times`.time_trial_group_pilot_id = `drl.time_trial_group_pilots`.id LEFT OUTER JOIN `drl.time_trial_groups` ON `drl.time_trial_group_pilots`.time_trial_group_id = `drl.time_trial_groups`.id
+
+)
