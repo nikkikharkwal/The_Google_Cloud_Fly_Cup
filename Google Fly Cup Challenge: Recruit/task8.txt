@@ -1,0 +1,27 @@
+SELECT
+
+`drl.pilots`.name AS pilot_name,
+
+`drl.heat_standings`.heat_id AS heat_id,
+
+`drl.heat_standings`.minimum_time,
+
+`drl.heat_standings`.points
+
+FROM `drl.heat_standings`
+
+LEFT JOIN `drl.event_pilots` ON `drl.event_pilots`.id = event_pilot_id
+
+LEFT JOIN `drl.pilots` ON `drl.pilots`.id = `drl.event_pilots`.pilot_id
+
+WHERE
+
+name = 'HEADSUP'
+
+AND
+
+minimum_time != 'HEADSUP'
+
+AND
+
+minimum_time != ''
