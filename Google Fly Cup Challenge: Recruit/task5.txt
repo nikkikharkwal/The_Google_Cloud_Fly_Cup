@@ -1,0 +1,23 @@
+WITH cte AS (SELECT `drl.round_standings`.minimum_time FROM `drl.round_standings` WHERE `rank` = 1)
+
+SELECT time
+
+(timestamp_seconds
+
+(CAST
+
+  (AVG
+
+    (UNIX_SECONDS
+
+      (PARSE_TIMESTAMP('%H:%M.%S', minimum_time))
+
+    )
+
+AS INT64)
+
+)
+
+)
+
+AS avg FROM cte
