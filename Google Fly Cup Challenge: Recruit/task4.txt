@@ -1,0 +1,1 @@
+SELECT `drl.pilots`.name, `drl.events`.name AS event_name FROM `drl.event_pilots` LEFT OUTER JOIN `drl.pilots` ON `drl.pilots`.id = `drl.event_pilots`.pilot_id LEFT OUTER JOIN `drl.events` ON `drl.events`.id = `drl.event_pilots`.event_id WHERE `drl.events`.name = 'California Nights' 
