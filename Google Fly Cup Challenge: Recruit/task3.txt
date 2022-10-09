@@ -1,0 +1,1 @@
+SELECT `drl.pilots`.name, `drl.event_pilots`.id FROM `drl.event_pilots` LEFT JOIN `drl.pilots` ON `drl.pilots`.id = `drl.event_pilots`.pilot_id
