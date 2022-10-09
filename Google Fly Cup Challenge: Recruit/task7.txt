@@ -15,4 +15,4 @@ FROM `drl.time_trial_cleaned`
 LEFT OUTER JOIN `drl.rounds` ON `drl.time_trial_cleaned`.round_id = `drl.rounds`.id
 
 LEFT OUTER JOIN `drl.events` ON `drl.events`.id = `drl.rounds`.event_id)
-SELECT MIN(time) as fastest_time FROM cte WHERE event_name = 'California Nights' AND name = 'Time Trials'
+SELECT MIN(time) as fastest_time FROM cte WHERE event_name = 'DETROIT WORLD CHAMPIONSHIP' AND name = 'Time Trials'
