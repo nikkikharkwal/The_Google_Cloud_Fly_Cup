@@ -1,1 +1,1 @@
-SELECT name FROM `drl.events` WHERE city = 'Miami'
+SELECT name FROM `drl.events` WHERE city = 'Phoenix'
