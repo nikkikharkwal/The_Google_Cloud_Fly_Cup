@@ -1,0 +1,46 @@
+WITH cte AS
+
+(SELECT `drl.pilots`.name, `drl.heat_standings`.heat_id, `drl.heat_standings`.points, `drl.heat_standings`.minimum_time
+
+FROM `drl.heat_standings`
+
+LEFT JOIN `drl.event_pilots` ON `drl.event_pilots`.id = event_pilot_id
+
+LEFT JOIN `drl.pilots` ON `drl.pilots`.id = `drl.event_pilots`.pilot_id
+WHERE name = 'HEADSUP' AND minimum_time != 'DNF' AND minimum_time != '')
+
+SELECT
+
+name AS pilot_name,
+
+heat_id
+
+minimum_time,
+
+points,
+
+time
+
+(timestamp_seconds
+
+  (CAST
+
+    (AVG
+
+      (UNIX_SECONDS
+
+        (PARSE_TIMESTAMP('%H:%M.%S', minimum_time))
+
+      )
+
+    OVER (ORDER BY heat_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+
+  AS INT64)
+
+  )
+
+)
+
+AS running_avg
+
+FROM cte
